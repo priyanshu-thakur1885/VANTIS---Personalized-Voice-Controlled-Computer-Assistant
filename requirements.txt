@@ -1,0 +1,8 @@
+pyautogui
+psutil
+SpeechRecognition
+PyAudio
+pyttsx3
+pycaw
+comtypes
+pywin32
