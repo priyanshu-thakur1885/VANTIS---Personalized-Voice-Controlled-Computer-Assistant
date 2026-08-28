@@ -1,648 +1,109 @@
 # VANTIS
 
-### **Voice-Activated Neural Task & Interaction System**
+### **Voice-Activated Natural Technology & Intelligent System**
 
-> **A personalized voice-controlled computer agent designed to understand, reason, and perform tasks directly on your computer.**
-
-VANTIS is an intelligent desktop computer agent designed to make human-computer interaction more natural through **voice commands**.
-
-Instead of manually navigating through applications, folders, settings, and system controls, users can communicate with their computer using natural language.
-
-VANTIS is designed to go beyond a traditional voice assistant. It will be capable of **understanding commands, executing computer operations, interacting with applications, controlling system settings, handling files, providing contextual feedback, and safely requesting confirmation before performing potentially destructive operations.**
+> **A personalized AI computer agent designed to understand natural language, control your computer, and automate everyday tasks.**
 
 ---
 
-## 🚀 Vision
+## 🚀 About
 
-The goal of VANTIS is to create a personalized AI layer between the user and their computer.
+**VANTIS** is a personalized AI computer agent that aims to transform how users interact with their computers.
 
-Instead of:
+Instead of relying entirely on traditional keyboard, mouse, menus, and manual navigation, VANTIS allows users to communicate with their computer naturally through voice commands.
 
-```text
-User → Mouse / Keyboard → Application
-```
-
-VANTIS aims to provide:
-
-```text
-User
-  ↓
-Voice Command
-  ↓
-Speech Recognition
-  ↓
-Command Understanding
-  ↓
-Reasoning & Intent Detection
-  ↓
-Safety Verification
-  ↓
-Task Execution
-  ↓
-Computer
-```
-
-The long-term goal is to make common computer interactions possible through simple natural-language instructions.
-
-For example:
-
-> **"Open Chrome."**
-
-> **"Set the volume at 50 percent."**
-
-> **"Open my DSA folder."**
-
-> **"Close WhatsApp."**
-
-> **"Type my assignment title."**
-
-> **"Scroll down."**
-
-And for potentially dangerous operations:
-
-> **"Delete this folder."**
-
-VANTIS should recognize that the operation is destructive and respond:
-
-> **"This will permanently delete the folder. Should I continue?"**
-
-The action should only be performed after explicit confirmation.
+It is designed to go beyond simple voice shortcuts by eventually understanding user intent, executing multi-step tasks, interacting with applications, managing files and system settings, and using AI to assist with complex tasks.
 
 ---
 
-# ✨ Features
+## ✨ Key Features
 
-## 🎙️ Voice Control
+* 🗣️ **Voice-Controlled Interaction**
+* 🧠 **Natural Language Command Understanding**
+* 🖱️ **Mouse & Keyboard Automation**
+* 🖥️ **Application & Window Management**
+* 📁 **File & Folder Management**
+* 🔊 **System Control**
+* 🤖 **AI-Powered Assistance**
+* ⚡ **Multi-Step Task Automation**
+* 👁️ **Screen & Context Understanding**
+* 👤 **Personalized Commands & Workflows**
+* 🔐 **Safety & Confirmation for Dangerous Actions**
+* 🔊 **Context-Aware Voice Feedback**
 
-VANTIS uses voice as its primary interaction method.
-
-The system captures the user's speech, converts it into text, identifies the requested action, and executes the corresponding operation.
-
-Example:
-
-```text
-User: Open Chrome
-
-VANTIS:
-Opening Chrome.
-```
-
----
-
-## 🖥️ Application Control
-
-VANTIS is designed to launch and close desktop applications through voice commands.
-
-Examples:
-
-```text
-Open Chrome
-Open VS Code
-Open WhatsApp
-Open Settings
-Open Calculator
-Close Chrome
-Close VS Code
-Close WhatsApp
-```
-
-The application controller can map user-friendly names to the actual Windows applications and processes.
+VANTIS is designed to evolve from executing individual commands into understanding and completing **complete tasks**.
 
 ---
 
-## ⌨️ Keyboard Automation
-
-VANTIS can interact with the keyboard programmatically.
-
-Supported operations include:
-
-```text
-Press Enter
-Press Escape
-Press Tab
-Type Hello World
-```
-
-It can also perform keyboard shortcuts:
-
-```text
-Copy it
-Paste it
-Cut it
-Undo
-Redo
-Select all
-```
-
----
-
-## 🖱️ Mouse Automation
-
-VANTIS can control the mouse to perform common interactions.
-
-Examples:
-
-```text
-Click
-Double click
-Right click
-Scroll up
-Scroll down
-```
-
-The system is designed so that these low-risk interactions can happen silently without unnecessary voice feedback.
-
----
-
-## 🔊 System Volume Control
-
-VANTIS provides direct control over the Windows master volume.
-
-Supported commands:
-
-```text
-Set volume at 50
-Set volume at 75 percent
-Mute
-Unmute
-```
-
-The system can directly set the volume to a requested percentage rather than repeatedly pressing volume-up or volume-down keys.
-
----
-
-## ☀️ Brightness Control
-
-VANTIS is designed to provide voice-based display brightness control.
-
-Examples:
-
-```text
-Set brightness at 50 percent
-Set brightness at 80 percent
-```
-
-Brightness control will be integrated into the system-control layer.
-
----
-
-## 📁 File & Folder Operations
-
-VANTIS is designed to interact with files and folders using natural-language commands.
-
-Potential operations include:
-
-```text
-Open my DSA folder
-Create a folder
-Rename this file
-Move this file
-Delete this file
-```
-
-File operations will be handled through a dedicated file-management layer rather than mixing filesystem logic with the command parser.
-
----
-
-# 🛡️ Safety & Confirmation System
-
-One of the most important design goals of VANTIS is **safe computer automation**.
-
-Not every command should be executed immediately.
-
-### Low-risk commands
-
-Commands such as:
-
-```text
-Click
-Scroll down
-Press Enter
-Open Chrome
-Set volume at 50
-```
-
-can be executed directly.
-
-For these commands, VANTIS can remain silent or provide a short completion message depending on the action.
-
-### Dangerous commands
-
-Potentially destructive commands should require explicit confirmation.
-
-Examples:
-
-```text
-Delete a file
-Delete a folder
-Format a drive
-Shutdown the computer
-Restart the computer
-Terminate critical processes
-```
-
-Instead of immediately executing:
-
-```text
-Delete this folder
-```
-
-VANTIS should respond:
-
-```text
-This will permanently delete the folder.
-Should I continue?
-```
-
-Only after receiving a valid confirmation such as:
-
-```text
-Yes
-Confirm
-Proceed
-```
-
-should the operation be executed.
-
-This safety layer is intended to prevent accidental destructive actions caused by:
-
-* Speech-recognition errors
-* Misunderstood commands
-* Accidental voice input
-* Ambiguous instructions
-* Incorrect application identification
-
----
-
-# 🔈 Intelligent Voice Feedback
-
-VANTIS is designed to distinguish between actions that require a response and actions that do not.
-
-### Silent actions
-
-Simple interactions should not unnecessarily interrupt the user.
-
-```text
-Scroll down
-Click
-Double click
-Press Enter
-```
-
-No spoken response is required.
-
-### Spoken responses
-
-VANTIS should provide feedback for:
-
-* Errors
-* Important confirmations
-* Task completion
-* Application operations
-* Potentially dangerous actions
-
-Example:
-
-```text
-User:
-Open Chrome.
-
-VANTIS:
-Opening Chrome.
-```
-
-Another example:
-
-```text
-User:
-Delete this file.
-
-VANTIS:
-This will permanently delete the file.
-Should I continue?
-```
-
-This creates a more natural interaction instead of making VANTIS speak after every mouse or keyboard action.
-
----
-
-# 🧠 Intelligent Command Processing
-
-The command-processing system is designed around a layered architecture.
+## 🧠 How It Works
 
 ```text
 Voice Input
      ↓
 Speech Recognition
      ↓
-Command Parser
-     ↓
-Intent Detection
-     ↓
-Action Generation
+Command / Intent Understanding
      ↓
 Safety Check
      ↓
-Command Executor
+Task Planning
      ↓
-Controller
+Command Execution
      ↓
-Operating System
+Voice Feedback
 ```
 
-Each component has a specific responsibility.
+Simple commands can execute silently:
 
-### Voice Controller
+> **"Scroll down."**
 
-Responsible for:
+While actions requiring feedback can respond:
 
-* Microphone input
-* Ambient-noise calibration
-* Speech capture
-* Speech-to-text conversion
+> **"Open Chrome."**
+> **"Opening Chrome."**
 
-### Command Parser
+Dangerous actions require confirmation:
 
-Responsible for:
-
-* Understanding recognized commands
-* Identifying command types
-* Extracting parameters
-* Generating structured actions
-
-Example:
-
-```text
-"Set volume at 70 percent"
-```
-
-becomes:
-
-```python
-{
-    "action": "set_volume",
-    "amount": 70
-}
-```
-
-### Command Executor
-
-Responsible for:
-
-* Receiving structured actions
-* Selecting the appropriate controller
-* Executing the requested operation
-* Triggering feedback when necessary
-
-### Controllers
-
-Individual controllers isolate computer operations into separate modules.
-
-Examples:
-
-```text
-KeyboardController
-MouseController
-ScreenController
-ApplicationController
-SystemController
-VoiceController
-```
-
-This modular architecture makes VANTIS easier to expand and maintain.
+> **"Delete this file."**
+> **"This will permanently delete the file. Should I continue?"**
 
 ---
 
-# 🏗️ Architecture
+## 🛠️ Tech Stack
 
-The project follows a modular controller-based architecture.
+**Language**
 
-```text
-                    ┌───────────────┐
-                    │     User      │
-                    └───────┬───────┘
-                            │
-                         Voice
-                            ↓
-                  ┌──────────────────┐
-                  │ Voice Controller │
-                  └────────┬─────────┘
-                           │
-                      Speech → Text
-                           ↓
-                  ┌──────────────────┐
-                  │ Command Parser   │
-                  └────────┬─────────┘
-                           │
-                    Structured Action
-                           ↓
-                  ┌──────────────────┐
-                  │ Safety / Intent  │
-                  │     Layer        │
-                  └────────┬─────────┘
-                           │
-                           ↓
-                  ┌──────────────────┐
-                  │ Command Executor │
-                  └────────┬─────────┘
-                           │
-          ┌────────────────┼────────────────┐
-          ↓                ↓                ↓
-      Keyboard          Mouse          Application
-      Controller       Controller       Controller
-          │                │                │
-          └────────────────┼────────────────┘
-                           ↓
-                    System Controller
-                           ↓
-                      Windows PC
-```
+* Python
+
+**Automation**
+
+* PyAutoGUI
+* PyCaw
+* psutil
+* subprocess
+
+**Voice**
+
+* SpeechRecognition
+* PyAudio
+* pyttsx3
+
+**Development**
+
+* VS Code
+* Git & GitHub
+* Python Virtual Environment
+
+**Future**
+
+* LLMs
+* NLP
+* Computer Vision
+* AI Task Planning
 
 ---
 
-# 🛠️ Tech Stack
-
-## Programming Language
-
-* **Python**
-
-## Voice & Speech
-
-* **SpeechRecognition**
-* **Google Speech Recognition**
-* **PyAudio**
-
-## Text-to-Speech
-
-* **pyttsx3**
-
-## Computer Automation
-
-* **PyAutoGUI**
-
-Used for:
-
-* Mouse control
-* Keyboard control
-* Scrolling
-* Keyboard shortcuts
-* Basic system interactions
-
-## Windows System Control
-
-* **pycaw**
-* **COM / comtypes**
-
-Used for:
-
-* Master volume control
-* Mute / unmute
-* Other Windows-level system functionality
-
-## Process Management
-
-* **psutil**
-
-Used for:
-
-* Detecting running applications
-* Identifying application processes
-* Closing applications safely
-
-## Application Launching
-
-* **subprocess**
-* **Windows command-line utilities**
-
-Used for:
-
-* Opening applications
-* Opening folders
-* Launching URLs
-* Interacting with Windows applications
-
-## Development Environment
-
-* **Visual Studio Code**
-* **Python Virtual Environment (`venv`)**
-* **Git**
-* **GitHub**
-
----
-
-# 📦 Installation
-
-## 1. Clone the repository
-
-```bash
-git clone <YOUR_REPOSITORY_URL>
-```
-
-Move into the project directory:
-
-```bash
-cd VANTIS
-```
-
----
-
-## 2. Create a virtual environment
-
-```bash
-python -m venv venv
-```
-
----
-
-## 3. Activate the virtual environment
-
-### Windows PowerShell
-
-```powershell
-venv\Scripts\Activate.ps1
-```
-
-### Windows Command Prompt
-
-```cmd
-venv\Scripts\activate
-```
-
----
-
-## 4. Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-If dependencies have not yet been added to `requirements.txt`, install the core packages manually:
-
-```bash
-pip install SpeechRecognition
-pip install PyAudio
-pip install pyautogui
-pip install psutil
-pip install pycaw
-pip install comtypes
-pip install pyttsx3
-```
-
----
-
-# ▶️ Running VANTIS
-
-Activate the virtual environment first:
-
-```powershell
-venv\Scripts\Activate.ps1
-```
-
-Then start VANTIS:
-
-```bash
-python main.py
-```
-
-VANTIS will initialize the microphone and begin listening for commands.
-
-Example:
-
-```text
-Microphone ready.
-Listening...
-Recognizing...
-
-You said: open chrome
-
-Opening Chrome.
-```
-
----
-
-# 🔄 Restarting VANTIS
-
-Instead of manually stopping and starting the program, VANTIS supports a restart command.
-
-Say:
-
-```text
-Restart Jarvis
-```
-
-The application restarts itself using the existing Python process.
-
-The command will eventually be renamed to match the final VANTIS identity:
-
-```text
-Restart VANTIS
-```
-
----
-
-# 📂 Project Structure
-
-The project is organized into independent controllers and processing layers.
+## 📂 Project Structure
 
 ```text
 VANTIS/
@@ -661,293 +122,67 @@ VANTIS/
 ├── executor.py
 ├── main.py
 ├── requirements.txt
-├── README.md
-└── venv/
-```
-
-### `main.py`
-
-The main entry point of the application.
-
-Responsible for:
-
-* Initializing controllers
-* Starting the voice-processing loop
-* Receiving voice commands
-* Passing commands to the parser
-* Sending actions to the executor
-
-### `command_parser.py`
-
-Converts natural-language commands into structured actions.
-
-### `executor.py`
-
-Executes the structured actions using the appropriate controller.
-
-### `controllers/`
-
-Contains the individual computer-control modules.
-
-This separation prevents the entire project from becoming one large Python file.
-
----
-
-# 🧪 Example Commands
-
-## Applications
-
-```text
-Open Chrome
-Open VS Code
-Open WhatsApp
-Open Settings
-
-Close Chrome
-Close VS Code
-Close WhatsApp
-```
-
-## Mouse
-
-```text
-Click
-Double click
-Right click
-Scroll up
-Scroll down
-```
-
-## Keyboard
-
-```text
-Press Enter
-Press Escape
-Type Hello World
-```
-
-## Shortcuts
-
-```text
-Copy it
-Paste it
-Cut it
-Undo
-Redo
-Select all
-```
-
-## System
-
-```text
-Set volume at 50 percent
-Set volume at 80
-Mute
-Unmute
-
-Set brightness at 60 percent
-```
-
-## Jarvis/VANTIS
-
-```text
-Restart VANTIS
-Stop VANTIS
+└── README.md
 ```
 
 ---
 
-# 🗺️ Development Roadmap
+## ⚙️ Installation
 
-VANTIS is being developed in multiple stages.
+```bash
+git clone https://github.com/yourusername/VANTIS.git
+cd VANTIS
 
-## Phase 1 — Computer Control
+python -m venv venv
+venv\Scripts\activate
 
-* [x] Keyboard controller
-* [x] Mouse controller
-* [x] Screen controller
-* [x] Application controller
-* [x] Basic system controller
+pip install -r requirements.txt
+python main.py
+```
 
-## Phase 2 — Voice Interaction
+---
 
-* [x] Microphone integration
-* [x] Speech recognition
-* [x] Command parser
-* [x] Command executor
-* [x] Basic voice commands
-* [x] Application control through voice
-* [x] Keyboard control through voice
-* [x] Mouse control through voice
+## 🗺️ Roadmap
+
+* [x] Voice input & speech recognition
+* [x] Mouse & keyboard control
+* [x] Application management
 * [x] System volume control
-
-## Phase 3 — Intelligent Interaction
-
-* [ ] Structured intent system
-* [ ] Better natural-language understanding
-* [ ] Context-aware commands
-* [ ] Improved command recognition
-* [ ] Command aliases
-* [ ] Better error handling
-* [ ] Intelligent task completion responses
-* [ ] Consistent voice feedback system
-
-## Phase 4 — Safety System
-
-* [ ] Dangerous-action detection
-* [ ] Confirmation workflow
-* [ ] Destructive-action protection
-* [ ] Application/process safety checks
-* [ ] Confirmation timeout
-* [ ] Cancel/abort commands
-* [ ] Safe execution policies
-
-## Phase 5 — File & System Automation
-
-* [ ] File creation
-* [ ] File deletion
-* [ ] File renaming
-* [ ] File movement
-* [ ] Folder management
-* [ ] Advanced system controls
-* [ ] Brightness control
-* [ ] Process management
-* [ ] System information commands
-
-## Phase 6 — AI Reasoning
-
-* [ ] AI-powered intent detection
-* [ ] Natural-language task interpretation
-* [ ] Multi-step task execution
+* [x] Voice feedback
+* [ ] File & folder management
+* [ ] Safety & confirmation system
+* [ ] AI integration
+* [ ] Natural-language understanding
+* [ ] Multi-step task automation
+* [ ] Screen understanding
 * [ ] Context awareness
-* [ ] Task planning
-* [ ] Ambiguous-command handling
-* [ ] Conversational interaction
-
-For example:
-
-> **"Open VS Code, go to my project folder, and start the application."**
-
-Instead of treating this as one simple command, VANTIS could break it into:
-
-```text
-1. Open VS Code
-2. Locate project folder
-3. Open project
-4. Start application
-5. Report completion
-```
+* [ ] Personalized workflows
+* [ ] Full AI computer-agent capabilities
 
 ---
 
-# 🔮 Future Vision
+## 🔮 Vision
 
-The final goal is for VANTIS to become more than a collection of voice commands.
+VANTIS aims to evolve from:
 
-It should evolve into an **intelligent computer agent capable of understanding goals rather than only individual commands.**
+> **"A computer that listens to commands."**
 
-For example:
+into:
 
-> **"Prepare my workspace for DSA."**
+> **"A computer agent that understands what I want done."**
 
-VANTIS could eventually understand the user's intent and perform multiple operations:
-
-```text
-Open VS Code
-      ↓
-Open DSA project
-      ↓
-Open browser
-      ↓
-Open required resources
-      ↓
-Adjust volume
-      ↓
-Prepare workspace
-      ↓
-"Your DSA workspace is ready."
-```
-
-The same architecture can eventually support:
-
-* Multi-step automation
-* Context-aware interactions
-* Personalized workflows
-* AI-based reasoning
-* Computer vision
-* Screen understanding
-* Application-specific automation
-* Local AI models
-* Natural conversational interaction
-* Autonomous task execution with safety controls
+The ultimate goal is to let users describe **what they want**, rather than manually explaining **how to do it**.
 
 ---
 
-# 🔐 Design Principles
-
-VANTIS is built around several core principles.
-
-### 1. Natural Interaction
-
-Users should be able to communicate naturally instead of memorizing rigid commands.
-
-### 2. Modular Architecture
-
-Each capability should have its own controller or service.
-
-### 3. Minimal Interruption
-
-VANTIS should not speak unnecessarily.
-
-Simple actions should happen silently.
-
-### 4. Safety First
-
-Potentially destructive operations should require explicit confirmation.
-
-### 5. Extensibility
-
-New capabilities should be addable without rewriting the entire application.
-
-### 6. Personalization
-
-VANTIS should eventually adapt to the user's applications, workflows, preferences, and frequently performed tasks.
-
----
-
-# 🤝 Contributing
-
-This project is currently being developed as a personal AI computer-agent project.
-
-Ideas, improvements, bug reports, and feature suggestions are welcome as the project evolves.
-
----
-
-# 📜 License
-
-This project will be licensed under the license specified in the repository.
-
----
-
-# 👨‍💻 Developer
+## 👨‍💻 Author
 
 **Priyanshu Thakur**
 
-Computer Science & Engineering Student
-Interested in:
-
-* Artificial Intelligence
-* Full-Stack Development
-* Computer Automation
-* Data Structures & Algorithms
-* Software Engineering
+Computer Science Engineering Student | Full-Stack Developer | AI & Automation Enthusiast
 
 ---
 
-# ⭐ VANTIS
+### ⭐ VANTIS
 
-**Voice-Activated Neural Task & Interaction System**
-
-> *Personalized Voice-Controlled Computer Assistant*
-
-VANTIS aims to bridge the gap between **human language and computer interaction**—turning spoken instructions into meaningful, safe, and executable computer actions.
+**Don't just control your computer. Let it understand you.**
