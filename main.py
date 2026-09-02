@@ -8,8 +8,9 @@ from controllers.system_controller import SystemController
 from controllers.voice_controller import VoiceController
 from command_parser import CommandParser
 from executor import CommandExecutor
-
-
+#Phase 3
+from core.ai_service import AIService
+from core.agent import Agent
 
 
 
@@ -82,27 +83,33 @@ executor = CommandExecutor()
 #         break
 
 
+#PHASE 3
+# ai = AIService()
+
+# response = ai.ask(
+#     "Explain what an operating system is in one sentence."
+# )
+
+# print(response)
+
+agent = Agent()
+
 while True:
-
     audio = voice.listen()
-
     text = voice.recognize(audio)
 
     if text is None:
         continue
 
     text = text.lower().strip()
-
     print("You said:", text)
 
-    if text and text.lower().strip() in ["exit", "stop jarvis", "jarvis stop", "quit", "shutdown jarvis"]:
+    if text in ["exit", "stop jarvis", "jarvis stop", "quit", "shutdown jarvis"]:
         print("Assistant stopped.")
         break
 
-    action = parser.parse(text)
-
-    print("Action:", action)
-
-    executor.execute(action)
-
-
+    try:
+        result = agent.run(text)
+        print("Agent result:", result)
+    except Exception as e:
+        print(f"Agent error: {e}")

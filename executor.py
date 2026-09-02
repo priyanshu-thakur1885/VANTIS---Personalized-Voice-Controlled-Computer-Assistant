@@ -6,6 +6,7 @@ from controllers.system_controller import SystemController
 from controllers.voice_feedback import VoiceFeedback
 import os
 import sys
+import time
 
 class CommandExecutor:
 
@@ -78,7 +79,20 @@ class CommandExecutor:
             if success:
                 self.feedback.speak(f"Opening {application}.")
             else:
-                self.feedback.speak(f"I couldn't open {application}.")  
+                self.feedback.speak(f"I couldn't open {application}.")
+
+        elif action_type == "open_browser_and_url":
+
+            browser = action.get("browser")
+            url = action.get("url")
+
+            browser_opened = self.application.open_application(browser)
+            if browser_opened:
+                time.sleep(1.5)
+                self.application.open_url(url)
+                self.feedback.speak(f"Opening {browser} and going to {url}.")
+            else:
+                self.feedback.speak(f"I couldn't open {browser}.")
 
         elif action_type == "close_application":
 
@@ -119,6 +133,13 @@ class CommandExecutor:
         elif action_type == "unmute":
 
             self.system.unmute()
+
+        elif action_type == "take_screenshot":
+
+            self.system.take_screenshot()
+            self.feedback.speak(
+                "Screenshot taken."
+            )
 
         else:
 

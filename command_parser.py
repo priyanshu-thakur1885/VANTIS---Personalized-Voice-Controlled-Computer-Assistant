@@ -1,3 +1,6 @@
+import re
+
+
 class CommandParser:
 
     def parse(self, command):
@@ -6,6 +9,37 @@ class CommandParser:
             return None
 
         command = command.lower().strip()
+
+        # -------------------------
+        # BROWSER + URL
+        # -------------------------
+
+        browser_url_match = re.search(
+            r"open\s+(.+?)\s+(?:and\s+go\s+to|and\s+visit|in)\s+(.+)",
+            command
+        )
+
+        if browser_url_match:
+            browser = browser_url_match.group(1).strip()
+            target = browser_url_match.group(2).strip()
+
+            if target.startswith("http"):
+                url = target
+            elif target in ["youtube", "youtube.com", "google", "google.com"]:
+                url = {
+                    "youtube": "https://www.youtube.com",
+                    "youtube.com": "https://www.youtube.com",
+                    "google": "https://www.google.com",
+                    "google.com": "https://www.google.com",
+                }[target]
+            else:
+                url = f"https://www.{target.replace(' ', '')}.com"
+
+            return {
+                "action": "open_browser_and_url",
+                "browser": browser,
+                "url": url
+            }
 
         # -------------------------
         # MOUSE
@@ -185,6 +219,12 @@ class CommandParser:
         # -------------------------
         # UNKNOWN
         # -------------------------
+        #take ss
+        if command == "take screenshot" or command == "take ss":
+
+            return {
+                "action": "take_screenshot"
+            }
 
         return {
             "action": "unknown",

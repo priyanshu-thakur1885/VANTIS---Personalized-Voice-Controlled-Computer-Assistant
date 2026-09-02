@@ -1,16 +1,16 @@
-from pycaw.pycaw import AudioUtilities
-
+from ctypes import cast, POINTER
+from comtypes import CLSCTX_ALL
+from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
 
 class SystemController:
-
     def __init__(self):
-
-        # Get the default Windows audio device
         devices = AudioUtilities.GetSpeakers()
-
-        # Use the EndpointVolume interface
-        # This was the interface that was working previously
-        self.volume = devices.EndpointVolume
+        interface = devices.Activate(
+            IAudioEndpointVolume._iid_,
+            CLSCTX_ALL,
+            None
+        )
+        self.volume = cast(interface, POINTER(IAudioEndpointVolume))
 
     # -------------------------
     # SET VOLUME
@@ -57,3 +57,21 @@ class SystemController:
         )
 
         print("Volume unmuted.")
+
+    def take_screenshot(self):
+
+        
+
+        # Get the current timestamp for the filename
+        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+
+        # Define the filename with the timestamp
+        filename = f"screenshot_{timestamp}.png"
+
+        # Capture the screenshot
+        screenshot = ImageGrab.grab()
+
+        # Save the screenshot to a file
+        screenshot.save(filename)
+
+        print(f"Screenshot saved as {filename}")

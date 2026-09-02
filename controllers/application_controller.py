@@ -111,28 +111,82 @@ class ApplicationController:
 
     def open_folder(self, path):
 
-        if os.path.exists(path):
+        requested_path = str(path).strip()
 
-            try:
-
-                subprocess.Popen(
-                    ["explorer", path]
-                )
-
-                return True
-
-            except Exception as e:
-
-                print(f"Could not open folder.")
-                print(e)
-
-                return False
-
-        else:
-
-            print(f"Folder '{path}' does not exist.")
-
+        if not requested_path:
+            print("No folder path provided.")
             return False
+
+        if os.path.exists(requested_path):
+            target_path = os.path.abspath(requested_path)
+        else:
+            target_path = self._find_folder(requested_path)
+
+        if not target_path:
+            print(f"Folder '{path}' does not exist.")
+            return False
+
+        try:
+            subprocess.Popen(["explorer", target_path])
+            print(f"Opening folder: {target_path}")
+            return True
+        except Exception as e:
+            print(f"Could not open folder.")
+            print(e)
+            return False
+
+    def _find_folder(self, folder_name):
+        """Search likely user folders first, then progressively broader locations."""
+        name = os.path.basename(folder_name).lower()
+
+        if not name:
+            return None
+
+        home = os.path.expanduser("~")
+        search_roots = []
+
+        # 1. Desktop / OneDrive Desktop first
+        desktop_candidates = []
+        if home:
+            desktop_candidates.extend([
+                os.path.join(home, "Desktop"),
+                os.path.join(home, "OneDrive", "Desktop"),
+            ])
+
+        for candidate in desktop_candidates:
+            if candidate not in search_roots and os.path.isdir(candidate):
+                search_roots.append(candidate)
+
+        # 2. User folders
+        if home:
+            other_user_locations = [
+                os.path.join(home, "Documents"),
+                os.path.join(home, "Downloads"),
+                home,
+            ]
+            for location in other_user_locations:
+                if location not in search_roots and os.path.isdir(location):
+                    search_roots.append(location)
+
+        # 3. Project folder
+        project_dir = os.getcwd()
+        if project_dir not in search_roots and os.path.isdir(project_dir):
+            search_roots.append(project_dir)
+
+        # 4. Do not scan full drives by default; only consider them if the user passed an absolute path
+        seen = set()
+        for root in search_roots:
+            if not os.path.isdir(root):
+                continue
+
+            for current, directories, _ in os.walk(root):
+                for directory in directories:
+                    full_path = os.path.join(current, directory)
+                    if directory.lower() == name and full_path not in seen:
+                        seen.add(full_path)
+                        return full_path
+
+        return None
 
     # -------------------------
     # CLOSE APPLICATION
