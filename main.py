@@ -16,7 +16,7 @@ from core.agent import Agent
 
 ################
 
-# restart jarvis in executor.py
+# restart vantis in executor.py
 
 ################
 
@@ -78,7 +78,7 @@ executor = CommandExecutor()
 #     if text:
 #         print("You said:", text)
 
-#     if text and text.lower().strip() in ["exit", "stop jarvis", "jarvis stop", "quit", "shutdown jarvis"]:
+#     if text and text.lower().strip() in ["exit", "stop vantis", "vantis stop", "quit", "shutdown vantis"]:
 #         print("Assistant stopped.")
 #         break
 
@@ -92,8 +92,6 @@ executor = CommandExecutor()
 
 # print(response)
 
-agent = Agent()
-
 while True:
     audio = voice.listen()
     text = voice.recognize(audio)
@@ -104,12 +102,12 @@ while True:
     text = text.lower().strip()
     print("You said:", text)
 
-    if text in ["exit", "stop jarvis", "jarvis stop", "quit", "shutdown jarvis"]:
+    if text in ["exit", "stop vantis", "vantis stop", "quit", "shutdown vantis"]:
         print("Assistant stopped.")
         break
 
     try:
-        result = agent.run(text)
-        print("Agent result:", result)
+        action = parser.parse(text)
+        executor.execute(action)
     except Exception as e:
-        print(f"Agent error: {e}")
+        print(f"Command error: {e}")

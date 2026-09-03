@@ -45,9 +45,9 @@ class CommandExecutor:
         elif action_type == "right_click":
 
             self.mouse.right_click()
-        elif action_type == "restart_jarvis":
+        elif action_type == "restart_vantis":
 
-            print("Restarting Jarvis...")
+            print("Restarting Vantis...")
 
             os.execv(
                 sys.executable,

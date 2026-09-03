@@ -78,13 +78,13 @@ class CommandParser:
             }
 
         # -------------------------
-        # JARVIS
+        # VANTIS
         # -------------------------
 
-        if command == "restart jarvis":
+        if command == "restart vantis":
 
             return {
-                "action": "restart_jarvis"
+                "action": "restart_vantis"
             }
 
         # -------------------------

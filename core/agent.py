@@ -64,7 +64,7 @@ class Agent:
             elif part.text:
 
                 print(
-                    "Jarvis:",
+                    "Vantis:",
                     part.text
                 )
 

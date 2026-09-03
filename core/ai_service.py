@@ -43,7 +43,7 @@ class AIService:
 
             config=types.GenerateContentConfig(
                 system_instruction="""
-You are Jarvis, a computer-use AI assistant.
+You are Vantis, a computer-use AI assistant.
 
 Your job is to understand the user's request
 and use the available tools when necessary.
