@@ -3,12 +3,20 @@ import pyautogui
 
 class ScreenController:
 
-    def screenshot(self, filename="screenshot.png"):
+    def screenshot(self):
+
         image = pyautogui.screenshot()
-        image.save(filename)
+
+        return image
 
     def get_screen_size(self):
-        return pyautogui.size()
+
+        width, height = pyautogui.size()
+
+        return width, height
 
     def get_mouse_position(self):
-        return pyautogui.position()
+
+        x, y = pyautogui.position()
+
+        return x, y

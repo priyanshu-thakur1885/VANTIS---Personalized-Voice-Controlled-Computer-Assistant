@@ -156,6 +156,38 @@ TOOLS = [
             types.FunctionDeclaration(
                 name="mute",
                 description="Mute the computer."
+            ),
+            types.FunctionDeclaration(
+                name="click_at",
+                description="Click at specific screen coordinates.",
+                parameters= types.Schema(
+                    type="OBJECT",
+                    properties={
+                        "x": types.Schema(
+                            type="INTEGER",
+                            description="X coordinate on the screen."
+                        ),
+                        "y": types.Schema(
+                            type="INTEGER",
+                            description="Y coordinate on the screen."
+                        )
+                    },
+                    required=["x", "y"]
+                )
+            ),
+            types.FunctionDeclaration(
+                name="click_element",
+                description="Find a visible screen element from a screenshot and click its center.",
+                parameters=types.Schema(
+                    type="OBJECT",
+                    properties={
+                        "description": types.Schema(
+                            type="STRING",
+                            description="Description of the visible element to click."
+                        )
+                    },
+                    required=["description"]
+                )
             )
         ]
     )

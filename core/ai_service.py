@@ -1,4 +1,5 @@
 import os
+import time
 
 from dotenv import load_dotenv
 from google import genai
@@ -25,24 +26,34 @@ class AIService:
             api_key=api_key
         )
 
+        self.model = "gemini-3.6-flash"
+
     def ask(self, message):
 
         response = self.client.models.generate_content(
-            model="gemini-3.6-flash",
-            contents=message,
+            model=self.model,
+            contents=message
         )
 
         return response.text
 
     def process(self, user_message):
 
-        response = self.client.models.generate_content(
-            model="gemini-3.6-flash",
+        max_retries = 3
 
-            contents=user_message,
+        for attempt in range(max_retries):
 
-            config=types.GenerateContentConfig(
-                system_instruction="""
+            try:
+
+                response = self.client.models.generate_content(
+
+                    model=self.model,
+
+                    contents=user_message,
+
+                    config=types.GenerateContentConfig(
+
+                        system_instruction="""
 You are Vantis, a computer-use AI assistant.
 
 Your job is to understand the user's request
@@ -57,8 +68,27 @@ Do not execute destructive or dangerous actions
 without confirmation.
 """,
 
-                tools=TOOLS
-            )
-        )
+                        tools=TOOLS
+                    )
+                )
 
-        return response
+                return response
+
+            except Exception as e:
+
+                error_text = str(e)
+
+                if "503" not in error_text:
+                    raise
+
+                if attempt == max_retries - 1:
+                    raise
+
+                wait_time = 2 ** attempt
+
+                print(
+                    f"Gemini temporarily unavailable. "
+                    f"Retrying in {wait_time} seconds..."
+                )
+
+                time.sleep(wait_time)

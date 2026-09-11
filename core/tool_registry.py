@@ -6,6 +6,8 @@ from tools.keyboard_tools import (
 
 from tools.mouse_tools import (
     click,
+    click_at,
+    click_element,
     double_click,
     right_click,
     scroll
@@ -34,6 +36,8 @@ TOOL_REGISTRY = {
     "hotkey": hotkey,
 
     "click": click,
+    "click_at": click_at,
+    "click_element": click_element,
 
     "double_click": double_click,
 

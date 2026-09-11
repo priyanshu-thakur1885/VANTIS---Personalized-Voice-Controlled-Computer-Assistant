@@ -20,3 +20,12 @@ class MouseController:
 
     def drag(self, x, y, duration=0.5):
         pyautogui.dragTo(x, y, duration=duration)
+
+    def click_at(self, x, y):
+        pyautogui.click(x, y)
+
+    def move_to(self, x, y):
+        pyautogui.moveTo(x, y)
+
+    def double_click_at(self, x, y):
+        pyautogui.doubleClick(x, y)

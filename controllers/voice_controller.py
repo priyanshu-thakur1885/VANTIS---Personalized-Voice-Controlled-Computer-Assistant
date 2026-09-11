@@ -1,5 +1,6 @@
 
 import speech_recognition as sr
+import json
 
 
 class VoiceController:
@@ -34,6 +35,7 @@ class VoiceController:
 
     def listen(self):
 
+
         try:
 
             with self.microphone as source:
@@ -41,7 +43,9 @@ class VoiceController:
                 print("Listening...")
 
                 audio = self.recognizer.listen(
-                    source
+                    source,
+                    timeout=5,
+                    phrase_time_limit=8
                 )
 
             # microphone is released here

@@ -1,5 +1,3 @@
-import json
-
 from core.ai_service import AIService
 from core.tool_registry import TOOL_REGISTRY
 
@@ -12,60 +10,81 @@ class Agent:
 
     def run(self, user_message):
 
-        response = self.ai.process(
+        messages = [
             user_message
-        )
+        ]
 
-        candidate = response.candidates[0]
+        max_steps = 10
 
-        for part in candidate.content.parts:
+        for step in range(max_steps):
 
-            if part.function_call:
+            response = self.ai.process(
+                messages
+            )
 
-                function_call = part.function_call
+            candidate = response.candidates[0]
 
-                tool_name = function_call.name
+            function_call_found = False
 
-                arguments = dict(
-                    function_call.args
-                )
+            for part in candidate.content.parts:
 
-                tool = TOOL_REGISTRY.get(
-                    tool_name
-                )
+                if part.function_call:
 
-                if tool is None:
+                    function_call_found = True
 
-                    print(
-                        f"Unknown tool: {tool_name}"
+                    function_call = part.function_call
+
+                    tool_name = function_call.name
+
+                    arguments = dict(
+                        function_call.args
                     )
 
-                    continue
+                    print()
+                    print("Tool:", tool_name)
+                    print("Arguments:", arguments)
 
-                result = tool(
-                    **arguments
-                )
+                    tool = TOOL_REGISTRY.get(
+                        tool_name
+                    )
 
-                print(
-                    "Tool:",
-                    tool_name
-                )
+                    if tool is None:
 
-                print(
-                    "Arguments:",
-                    arguments
-                )
+                        print(
+                            f"Unknown tool: {tool_name}"
+                        )
 
-                print(
-                    "Result:",
-                    result
-                )
+                        return response
 
-            elif part.text:
+                    result = tool(
+                        **arguments
+                    )
 
-                print(
-                    "Vantis:",
-                    part.text
-                )
+                    print(
+                        "Result:",
+                        result
+                    )
 
-        return response
+                    messages.append({
+                        "tool": tool_name,
+                        "result": result
+                    })
+
+            if not function_call_found:
+
+                for part in candidate.content.parts:
+
+                    if part.text:
+
+                        print(
+                            "Vantis:",
+                            part.text
+                        )
+
+                return response
+
+        print(
+            "Vantis: I could not complete the task."
+        )
+
+        return None 

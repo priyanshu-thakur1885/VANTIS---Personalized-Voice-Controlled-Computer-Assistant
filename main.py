@@ -64,6 +64,7 @@ app = ApplicationController()
 voice = VoiceController()
 parser = CommandParser()
 executor = CommandExecutor()
+agent = Agent()
 
 # audio = voice.listen()
 # text = voice.recognize(audio)
@@ -92,22 +93,37 @@ executor = CommandExecutor()
 
 # print(response)
 
+
 while True:
+
     audio = voice.listen()
+
     text = voice.recognize(audio)
 
     if text is None:
         continue
 
     text = text.lower().strip()
+
     print("You said:", text)
 
-    if text in ["exit", "stop vantis", "vantis stop", "quit", "shutdown vantis"]:
+    if text in [
+        "exit",
+        "stop vantis",
+        "vantis stop",
+        "quit",
+        "shutdown vantis"
+    ]:
+
         print("Assistant stopped.")
         break
 
     try:
-        action = parser.parse(text)
-        executor.execute(action)
+
+        agent.run(text)
+
     except Exception as e:
-        print(f"Command error: {e}")
+
+        print(
+            f"Command error: {e}"
+        )
